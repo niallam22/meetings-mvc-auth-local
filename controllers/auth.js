@@ -2,6 +2,7 @@ const passport = require('passport')
 const validator = require('validator')
 const User = require('../models/User')
 
+//check if the user is already logged in, if they are, redirect browser to the /todos route, if not render login.ejs and respond. note this is all being called from server.js which specifies to use the ejs view engine so I think that's why render doesnt need the file extension.
  exports.getLogin = (req, res) => {
     if (req.user) {
       return res.redirect('/todos')
@@ -10,8 +11,9 @@ const User = require('../models/User')
       title: 'Login'
     })
   }
-  
+  //user is attempting to log in
   exports.postLogin = (req, res, next) => {
+    //check if entries are valid
     const validationErrors = []
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })
     if (validator.isEmpty(req.body.password)) validationErrors.push({ msg: 'Password cannot be blank.' })
@@ -22,6 +24,7 @@ const User = require('../models/User')
     }
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
   
+    //if valid email and password > authenticate user to start their session
     passport.authenticate('local', (err, user, info) => {
       if (err) { return next(err) }
       if (!user) {
@@ -35,6 +38,7 @@ const User = require('../models/User')
       })
     })(req, res, next)
   }
+  
   
   exports.logout = (req, res) => {
     req.logout(() => {
@@ -68,6 +72,7 @@ const User = require('../models/User')
     }
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
   
+    //create new user object (imported userSchema from model)
     const user = new User({
       userName: req.body.userName,
       email: req.body.email,

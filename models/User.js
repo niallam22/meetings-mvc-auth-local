@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
 
 
 // Password hash middleware.
- 
+ // before user is save the password is hashed and then the next function is called which is save which is a mongoose method
  UserSchema.pre('save', function save(next) {
   const user = this
   if (!user.isModified('password')) { return next() }

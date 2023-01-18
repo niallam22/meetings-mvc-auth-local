@@ -37,7 +37,9 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(flash())
-  
+
+//once the server has heard a request it sends the request to the router
+//for a login, a get request is sent to main routes
 app.use('/', mainRoutes)
 app.use('/todos', todoRoutes)
  
