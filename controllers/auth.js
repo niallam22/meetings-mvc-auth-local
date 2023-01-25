@@ -2,10 +2,10 @@ const passport = require('passport')
 const validator = require('validator')
 const User = require('../models/User')
 
-//check if the user is already logged in, if they are, redirect browser to the /todos route, if not render login.ejs and respond. note this is all being called from server.js which specifies to use the ejs view engine so I think that's why render doesnt need the file extension.
+//check if the user is already logged in, if they are, redirect browser to the /meetings route, if not, render login.ejs and respond. note this is all being called from server.js which specifies to use the ejs view engine so I think that's why render doesnt need the file extension.
  exports.getLogin = (req, res) => {
     if (req.user) {
-      return res.redirect('/todos')
+      return res.redirect('/meetings')
     }
     res.render('login', {
       title: 'Login'
@@ -34,7 +34,7 @@ const User = require('../models/User')
       req.logIn(user, (err) => {
         if (err) { return next(err) }
         req.flash('success', { msg: 'Success! You are logged in.' })
-        res.redirect(req.session.returnTo || '/todos')
+        res.redirect(req.session.returnTo || '/meetings')
       })
     })(req, res, next)
   }
@@ -53,7 +53,7 @@ const User = require('../models/User')
   
   exports.getSignup = (req, res) => {
     if (req.user) {
-      return res.redirect('/todos')
+      return res.redirect('/meetings')
     }
     res.render('signup', {
       title: 'Create Account'
@@ -94,7 +94,7 @@ const User = require('../models/User')
           if (err) {
             return next(err)
           }
-          res.redirect('/todos')
+          res.redirect('/meetings')
         })
       })
     })

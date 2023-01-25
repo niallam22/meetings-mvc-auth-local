@@ -9,6 +9,7 @@ const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const todoRoutes = require('./routes/todos')
+const meetingRoutes = require('./routes/meetings')
 
 require('dotenv').config({path: './config/.env'})
 
@@ -41,7 +42,8 @@ app.use(flash())
 //once the server has heard a request it sends the request to the router
 //for a login, a get request is sent to main routes
 app.use('/', mainRoutes)
-app.use('/todos', todoRoutes)
+// app.use('/todos', todoRoutes)
+app.use('/meetings', meetingRoutes)
  
 app.listen(process.env.PORT, ()=>{
     console.log('Server is running, you better catch it!')
