@@ -5,7 +5,7 @@ const { ensureAuth } = require('../middleware/auth')
 
 router.get('/', ensureAuth, meetingsController.getMeetings)
 
-router.post('/accessMeeting', meetingsController.accessMeeting)
+router.get('/accessMeeting', meetingsController.accessMeeting)
 
 router.post('/createMeeting', meetingsController.createMeeting)
 

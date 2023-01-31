@@ -1,20 +1,24 @@
-const Meeting = require('../models/Meeting') //CREATE MEETING MODEL AND MEETINGS.EJS eddit controller once schema is created
+const Meeting = require('../models/Meeting') //CREATE MEETING MODEL AND MEETINGS.EJS edit controller once schema is created
 
 module.exports = {
     getMeetings: async (req,res)=>{
-        console.log(req.user)
+        // console.log(req)
+        console.log('this is req.user',req.user)
         try{
             const meetingItems = await Meeting.find({userId:req.user.id})
-            const itemsLeft = await Meeting.countDocuments({userId:req.user.id,completed: false})
+            const itemsLeft = await Meeting.countDocuments({userId:req.user.id})//need to add a meeting date to userSchema and compare that to the current date
             res.render('meetings.ejs', {meetings: meetingItems, left: itemsLeft, user: req.user})
         }catch(err){
             console.log(err)
         }
     },
     accessMeeting: async (req,res)=>{
-        console.log(req.user)
+        console.log('req=',req)
+        console.log(req.body._id)
         try{
             const meetingItems = await Meeting.findById(req.body._id)
+            console.log(meetingItems)
+            console.log(req.body)
             res.render('access.ejs', {meetings: meetingItems, user: req.user})
             
         }catch(err){
@@ -22,6 +26,7 @@ module.exports = {
         }
     },
     createMeeting: async (req, res)=>{
+        console.log('this is req.body',req.body)
         try{
             Meeting.create({userId: req.user.id, meetingTitle: req.body.title, attendees: req.body.attendee, notes: req.body.notes, userAvailability: req.body.facilitatorTime, attendeeAvailability: req.body.attendeeAvailability, finalMeetingTime: req.body.finalMeetingTime})
             console.log(req.body)

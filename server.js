@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-const passport = require('passport')
+const passport = require('passport') //strategies can be changed e.g. google auth
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const flash = require('express-flash')
@@ -21,7 +21,7 @@ connectDB()
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+app.use(express.json()) //parses req object as json object
 app.use(logger('dev'))
 // Sessions
 app.use(
@@ -42,7 +42,6 @@ app.use(flash())
 //once the server has heard a request it sends the request to the router
 //for a login, a get request is sent to main routes
 app.use('/', mainRoutes)
-// app.use('/todos', todoRoutes)
 app.use('/meetings', meetingRoutes)
  
 app.listen(process.env.PORT, ()=>{
