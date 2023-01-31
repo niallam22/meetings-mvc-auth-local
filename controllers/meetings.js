@@ -11,6 +11,16 @@ module.exports = {
             console.log(err)
         }
     },
+    accessMeeting: async (req,res)=>{
+        console.log(req.user)
+        try{
+            const meetingItems = await Meeting.findById(req.body._id)
+            res.render('access.ejs', {meetings: meetingItems, user: req.user})
+            
+        }catch(err){
+            console.log(err)
+        }
+    },
     createMeeting: async (req, res)=>{
         try{
             Meeting.create({userId: req.user.id, meetingTitle: req.body.title, attendees: req.body.attendee, notes: req.body.notes, userAvailability: req.body.facilitatorTime, attendeeAvailability: req.body.attendeeAvailability, finalMeetingTime: req.body.finalMeetingTime})
