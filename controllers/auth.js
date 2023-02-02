@@ -5,6 +5,7 @@ const User = require('../models/User')
 //check if the user is already logged in, if they are, redirect browser to the /meetings route, if not, render login.ejs and respond. note this is all being called from server.js which specifies to use the ejs view engine so I think that's why render doesnt need the file extension.
  exports.getLogin = (req, res) => {
     if (req.user) {
+      console.log('this is req.user', req.user)
       return res.redirect('/meetings')
     }
     res.render('login', {
@@ -23,7 +24,7 @@ const User = require('../models/User')
       return res.redirect('/login')
     }
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
-  
+    console.log('this is req.body', req.body)
     //if valid email and password > authenticate user to start their session
     passport.authenticate('local', (err, user, info) => {
       if (err) { return next(err) }

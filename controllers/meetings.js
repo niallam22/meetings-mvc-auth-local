@@ -28,7 +28,7 @@ module.exports = {
     createMeeting: async (req, res)=>{
         console.log('this is req.body',req.body)
         try{
-            Meeting.create({userId: req.user.id, meetingTitle: req.body.title, attendees: req.body.attendee, notes: req.body.notes, userAvailability: req.body.facilitatorTime, attendeeAvailability: req.body.attendeeAvailability, finalMeetingTime: req.body.finalMeetingTime})
+            Meeting.create({userId: req.user.id, meetingTitle: req.body.title, notes: req.body.notes, userAvailability: req.body.facilitatorTime, finalMeetingTime: req.body.finalMeetingTime})
             console.log(req.body)
             console.log('Meeting has been created!')
             res.redirect('/meetings')

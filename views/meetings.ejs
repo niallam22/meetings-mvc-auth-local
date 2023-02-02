@@ -18,14 +18,6 @@
                     Title:
                     <input type="text" name="title">
                 </label>
-                <label>
-                    Attendees
-                    <input type="text" id="attendee" name="attendee">
-                </label>
-                <button id="addAttendee">Add</button>
-                <Ul class="attendees">
-                </Ul>
-                <label>
                     Meeting notes
                     <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
                 </label>
@@ -91,7 +83,15 @@
     <h3>Existing meetings</h3>
     <span>Pending meetings: <%=left%></span>
     <%# THIS IS A COMMENT %>
-
+    <ul>
+        <% meetings.forEach( el => { %>
+                <li class='meetingItem' data-id='<%=el._id%>'>
+                    <span><%= el %></span>
+                    
+                    <span class='del'> Delete </span>
+                </li>
+        <% }) %>    
+        </ul>
 
     <form action="/todos/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
