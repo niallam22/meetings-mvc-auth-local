@@ -32,10 +32,6 @@ const MeetingSchema = new mongoose.Schema({
         type: Array,
         required: true,
     },
-    attendeeAvailability: {
-        type: String,
-        required: false,
-    },
     finalMeetingTime: {
         type: String,
         required: false,
