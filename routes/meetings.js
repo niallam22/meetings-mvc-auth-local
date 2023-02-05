@@ -9,4 +9,6 @@ router.post('/accessMeeting', meetingsController.accessMeeting)
 
 router.post('/createMeeting', meetingsController.createMeeting)
 
+router.post('/updateAvail', meetingsController.updateAttendeeAvailability)
+
 module.exports = router

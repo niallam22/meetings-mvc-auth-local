@@ -1,4 +1,5 @@
 const Meeting = require('../models/Meeting') //CREATE MEETING MODEL AND MEETINGS.EJS edit controller once schema is created
+const Attendee = require('../models/Meeting') //CREATE MEETING MODEL AND MEETINGS.EJS edit controller once schema is created
 
 module.exports = {
     getMeetings: async (req,res)=>{
@@ -16,7 +17,7 @@ module.exports = {
         console.log('this is req.body._id ',req.body._id)
         console.log('this is req.body.access ',req.body.access)
         try{
-            const meetingItems = await Meeting.findById(req.body.access)
+            const meetingItems = await Meeting.findById(req.body.access).toString()
             console.log(meetingItems)
             
             res.render('access.ejs', {meetings: meetingItems, user: req.user})
@@ -35,7 +36,19 @@ module.exports = {
         }catch(err){
             console.log(err)
         }
-    } //,
+    },
+    updateAttendeeAvailability: async (req, res)=>{
+        console.log('this is req.body',req.body)
+        try{
+            Attendee.create({attendeeAvailability: req.body.attendeeSelectedTime, attendeeName: req.body.attendeeName})
+            console.log(req.body)
+            console.log('Attendee availabiltiy updated!')
+            res.redirect('/meetings')
+        }catch(err){
+            console.log(err)
+        }
+    }    
+    //,
     // markComplete: async (req, res)=>{
     //     try{
     //         await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{

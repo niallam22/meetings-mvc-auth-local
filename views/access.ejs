@@ -8,19 +8,34 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Meeting</h1>
+    <h1 class='meetLogItem'></span><%= meetings.meetingTitle %></h1>
     <section class="update availability">
-        <form action="meetings/updateAvail" method="PUT">
             <fieldset>
                 <legend></legend>
                     <ul>
-                        <li class='meetLogItem'><%= meetings %></li>
+                        <li class='meetLogItem'><span>Attendees - </span><%= meetings.attendees %></li>
+                        <li class='meetLogItem'><span>Meeting Notes - </span><%= meetings.notes %></li>
+                        <li class='meetLogItem'><span>Meeting Facilitator's Availability - </span><%= meetings.userAvailability %></li>
                     </ul>
-                <button type="submit">Enter your meeting availability information</button>
             </fieldset>
-        </form>
     </section>
-
+    <section>
+        <h3>Choose your availability based on Facilitator's options</h3>
+        <form action="meetings/updateAvail" method="POST">
+                    <label>
+                        Enter Your Name:
+                        <input type="text" name="attendeeName">
+                    </label>
+                    <% for(var i=0; i<meetings.userAvailability.length; i++) {%>
+                    <ul>
+                        <li class="attendeeAvailTimes">
+                            <input type="checkbox" name="attendeeSelectedTime" class="timeSlot"><%=meetings.userAvailability[i]%></input>
+                        </li>
+                    </ul>
+                    <% } %>  
+            <button class="sendAvail"type="submit">Submit to Facilitator</button>
+        </form>   
+    </section>
     <script src="js/main.js"></script>
 </body>
 </html>
