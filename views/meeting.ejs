@@ -81,21 +81,17 @@
     
 
     <h3>Existing meetings</h3>
-    <span>Pending meetings: <%=left%></span>
     <%# THIS IS A COMMENT %>
     <ul>
-        <% meetings.forEach( el => { %>
-                <li class='meetingItem' data-id=<%=el._id%>>
-                    <a href="/meetings/<%=el._id%>">
-                        <h3><%= el.meetingTitle %></h3>
-                        <h4><%= el.notes %></h4>
-                        <h5><%= el.attendees %></h5><%# THIS IS NOT WORKING %>
+                <li class='meetingItem' data-id=<%=meeting._id%>>
+                    <h3><%= meeting.meetingTitle %></h3>
+                    <h4><%= meeting.notes %></h4>
+                        <h5><%= meeting.attendees %></h5><%# THIS IS NOT WORKING %>
                     </a>
-                    <span><%= el %></span>
+                    
                     
                     <span class='del'> Delete </span>
-                </li>
-        <% }) %>    
+                </li>  
         </ul>
 
     <form action="/todos/createTodo" method='POST'>

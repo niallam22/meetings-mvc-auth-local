@@ -13,6 +13,16 @@ module.exports = {
             console.log(err)
         }
     },
+    getMeeting: async (req,res)=>{
+        // console.log(req)
+        console.log('this is req.user',req.user)
+        try{
+            const meetingItem = await Meeting.findById(req.params.id)
+            res.render('meeting.ejs', {meeting: meetingItem, user: req.user})
+        }catch(err){
+            console.log(err)
+        }
+    },
     accessMeeting: async (req,res)=>{
         console.log('this is req.body._id ',req.body._id)
         console.log('this is req.body.access ',req.body.access)
