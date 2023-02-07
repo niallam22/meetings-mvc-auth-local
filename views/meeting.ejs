@@ -5,102 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <h1>Meetings</h1>
-    <section class="create new meeting">
-        
-        <form action="meetings/createMeeting" method="POST">
-            <fieldset>
-                <legend><h3>Create new meeting</h3></legend>
-                <label>
-                    Title:
-                    <input type="text" name="title">
-                </label>
-                    Meeting notes
-                    <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
-                </label>
-                <ol id="schedule">
-                    <li class="day" id="monday">
-                        Monday
-                        <ol>
-                            <li class="hour">
-                                <input type="checkbox" name="facilitatorTime" class="timeSlot" value="Monday, 9 am">
-                                9 am
-                                </input>
-                            </li>
-                            <li class="hour">
-                                <input type="checkbox" name="facilitatorTime" class="timeSlot" value="Monday, 10 am">
-                                10 am
-                                </input>
-                            </li>
-                            <li class="hour">
-                                <input type="checkbox" name="facilitatorTime" class="timeSlot" value="Monday, 11 am">
-                                11 am
-                                </input>
-                            </li>
-                            <li class="hour">
-                                <input type="checkbox" name="facilitatorTime" class="timeSlot" value="Monday, 12 pm">
-                                12 pm
-                                </input>
-                            </li>
-                            <li class="hour">
-                                <input type="checkbox" name="facilitatorTime" class="timeSlot" value="Monday, 1 pm">
-                                1 pm
-                                </input>
-                            </li>
-                            <li class="hour">
-                                <input type="checkbox" name="facilitatorTime" class="timeSlot" value="Monday, 2 pm">
-                                2 pm
-                                </input>
-                            </li>
-                            <li class="hour">
-                                <input type="checkbox" name="facilitatorTime" class="timeSlot" value="Monday, 3 pm">
-                                3 pm
-                                </input>
-                            </li>
-                            <li class="hour">
-                                <input type="checkbox" name="facilitatorTime" class="timeSlot" value="Monday, 4 pm">
-                                4 pm
-                                </input>
-                            </li>
-                            <li class="hour">
-                                <input type="checkbox" name="facilitatorTime" class="timeSlot" value="Monday, 5 pm">
-                                5 pm
-                                </input>
-                            </li>
-                        </ol>
-                    </li>
-                </ol>
-                <button type="submit">create meeting</button>
-
-            </fieldset>
-        </form>
+    <h1><%= meeting.meetingTitle %></h1>
+    <section class="">
+        <span>Meeting ID: <%= meeting._id %></span>
+        <p>Notes: <%= meeting.notes %></p>
+        <span>Attendee responses: 
+            <%# THIS IS A COMMENT can use this code once AttendeeSchema is being used meeting.attendeeInfo.attendeeName %>
+        </span>
+        <table>
+            <thead>
+                    <th>Select time</th>
+                    <th>No. responses</th>
+                    <th>Attendees</th>
+            </thead>
+            <tbody>
+                <% meeting.userAvailability.forEach( el => { %>
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="finalisedAvailability" value="<%= el %>">
+                                <%= el %>
+                            </input>
+                        </td>
+                        <td>khj</td>
+                    </tr>
+                <% }) %>  
+            </tbody>
+        </table>
     </section>
     
-
-    <h3>Existing meetings</h3>
     <%# THIS IS A COMMENT %>
-    <ul>
-                <li class='meetingItem' data-id=<%=meeting._id%>>
-                    <h3><%= meeting.meetingTitle %></h3>
-                    <h4><%= meeting.notes %></h4>
-                        <h5><%= meeting.attendees %></h5><%# THIS IS NOT WORKING %>
-                    </a>
-                    
-                    
-                    <span class='del'> Delete </span>
-                </li>  
-        </ul>
 
-    <form action="/todos/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
-    </form>
 
     <a href="/logout">Logout</a>
 
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>
