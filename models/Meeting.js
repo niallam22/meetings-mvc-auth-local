@@ -9,10 +9,6 @@ const MeetingSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    attendeeInfo:{
-        type: AttendeeSchema,
-        required: false,
-      },
     notes: {
         type: String,
         required: false,

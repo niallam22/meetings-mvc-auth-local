@@ -1,5 +1,5 @@
 const Meeting = require('../models/Meeting') //CREATE MEETING MODEL AND MEETINGS.EJS edit controller once schema is created
-// const Attendee = require('../models/Meeting') //CREATE MEETING MODEL AND MEETINGS.EJS edit controller once schema is created
+const Attendee = require('../models/Meeting') //CREATE MEETING MODEL AND MEETINGS.EJS edit controller once schema is created
 
 module.exports = {
     getMeetings: async (req,res)=>{
@@ -17,8 +17,9 @@ module.exports = {
         console.log('this is req.user',req.user)
         try{
             const meetingItem = await Meeting.findById(req.params.id)
-            console.log('this is meeting item: ', meetingItem)
-            res.render('meeting.ejs', {meeting: meetingItem, user: req.user})
+            let attendeeInfo = await Attendee.find({meetingId:req.params.id})
+            console.log('this is attendeeInfo: ', attendeeInfo, `this is req.params.id ${req.params.id}`)
+            res.render('meeting.ejs', {meeting: meetingItem, attendees: attendeeInfo, user: req.user})
         }catch(err){
             console.log(err)
         }

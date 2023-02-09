@@ -12,8 +12,9 @@
     <section class="">
         <span>Meeting ID: <%= meeting._id %></span>
         <p>Notes: <%= meeting.notes %></p>
-        <span>Attendee responses: 
+        <span>Attendee responses (): 
             <%# THIS IS A COMMENT can use this code once AttendeeSchema is being used meeting.attendeeInfo.attendeeName %>
+            <%= attendees %>
         </span>
         <table>
             <thead>
@@ -25,7 +26,7 @@
                 <% meeting.userAvailability.forEach( el => { %>
                     <tr>
                         <td>
-                            <input type="checkbox" name="finalisedAvailability" value="<%= el %>">
+                            <input type="radio" name="finalisedAvailability" value="<%= el %>">
                                 <%= el %>
                             </input>
                         </td>

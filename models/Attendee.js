@@ -3,11 +3,15 @@ const mongoose = require('mongoose')
 const AttendeeSchema = new mongoose.Schema({
     attendeeName:{
         type: String,
-        required: false,
+        required: true,
       },
     attendeeAvailability: {
         type: String,
         required: false,
+    },
+    meetingId: {
+        type: String,
+        required: true,
     }
 })
 
