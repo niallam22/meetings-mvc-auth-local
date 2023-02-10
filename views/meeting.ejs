@@ -12,28 +12,47 @@
     <section class="">
         <span>Meeting ID: <%= meeting._id %></span>
         <p>Notes: <%= meeting.notes %></p>
-        <span>Attendee responses: 
-            <%# THIS IS A COMMENT can use this code once AttendeeSchema is being used meeting.attendeeInfo.attendeeName %>
+        <% let attendeeList = '' %>
+        <% attendees.forEach(attendee => attendeeList += attendee.attendeeName + ', ') %>
+        <span>Attendees (<%= attendees.length %>): 
+            <%# THIS IS A COMMENT %>
+            <%= attendeeList %>
         </span>
-        <table>
-            <thead>
-                    <th>Select time</th>
-                    <th>No. responses</th>
-                    <th>Attendees</th>
-            </thead>
-            <tbody>
-                <% meeting.userAvailability.forEach( el => { %>
-                    <tr>
-                        <td>
-                            <input type="checkbox" name="finalisedAvailability" value="<%= el %>">
-                                <%= el %>
-                            </input>
-                        </td>
-                        <td>khj</td>
-                    </tr>
-                <% }) %>  
-            </tbody>
-        </table>
+        <form action="/meetings/finaliseMeeting/<%= meeting._id %>" method="POST">
+            <fieldset>
+                <table>
+                    <thead>
+                            <th>Select time</th>
+                            <th>No. responses</th>
+                            <th>Attendees</th>
+                    </thead>
+                    <tbody>
+                        <%# code itterates through the facilitators availbility and checks if there is corrosponding attendee responses and creates the table data. could use OOP to do the checks%>
+                        <% meeting.userAvailability.forEach( el => { %> 
+                            <% let attendeesAvailable = 0%>
+                            <% let attendeeResponses = ''%>
+                            <% attendees.forEach(attendee => { %>
+                                <% if(attendee.attendeeAvailability.includes(el)){ %> 
+                                    <% attendeesAvailable ++ %>
+                                    <% attendeeResponses += attendee.attendeeName %>
+                                <% } %>
+                            <% }) %>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="finalisedAvailability" value="<%= el %>">
+                                        <%= el %>
+                                    </input>
+                                </td>
+                                <td><%= attendeesAvailable %></td>
+                                <td><%= attendeeResponses %></td>
+                            </tr>
+                        <% }) %>  
+                    </tbody>
+                </table>
+                <button>Finalise meeting</button>
+            </fieldset>
+        </form>
+        
     </section>
     
     <%# THIS IS A COMMENT %>
