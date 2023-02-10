@@ -6,7 +6,7 @@ const AttendeeSchema = new mongoose.Schema({
         required: true,
       },
     attendeeAvailability: {
-        type: String,
+        type: Array,
         required: false,
     },
     meetingId: {
