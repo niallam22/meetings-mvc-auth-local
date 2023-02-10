@@ -29,7 +29,7 @@ module.exports = {
         console.log('this is req.body._id ',req.body._id)
         console.log('this is req.body.access ',req.body.access)
         try{
-            const meetingItems = await Meeting.findById(req.body.access).toString()
+            const meetingItems = await Meeting.findById(req.body.access)
             console.log(meetingItems)
             
             res.render('access.ejs', {meetings: meetingItems, user: req.user})
