@@ -52,7 +52,7 @@ module.exports = {
     updateAttendeeAvailability: async (req, res)=>{
         console.log('this is req.body',req.body)
         try{
-            Attendee.create({attendeeAvailability: req.body.attendeeSelectedTime, attendeeName: req.body.attendeeName})
+            Attendee.create({attendeeAvailability: req.body.attendeeSelectedTime, attendeeName: req.body.attendeeName, meetingId: req.params.id})
             console.log(req.body)
             console.log('Attendee availabiltiy updated!')
             res.redirect('/meetings')

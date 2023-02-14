@@ -21,7 +21,7 @@
     </section>
     <section>
         <h3>Choose your availability based on Facilitator's options</h3>
-        <form action="meetings/updateAvail" method="POST">
+        <form action="/meetings/updateAvail/<%= meetings._id %>" method="POST">
                     <label>
                         Enter Your Name:
                         <input type="text" name="attendeeName">

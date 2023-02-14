@@ -11,7 +11,7 @@ router.post('/accessMeeting', meetingsController.accessMeeting)
 
 router.post('/createMeeting', meetingsController.createMeeting)
 
-router.post('/updateAvail', meetingsController.updateAttendeeAvailability)
+router.post('/updateAvail/:id', meetingsController.updateAttendeeAvailability)
 
 router.post('/finaliseMeeting/:id', meetingsController.finaliseMeeting)
 
