@@ -1,3 +1,29 @@
+/* Bootstrap 5 JS included */
+/* vanillajs-datepicker 1.1.4 JS included */
+
+const getDatePickerTitle = elem => {
+    // From the label or the aria-label
+    const label = elem.nextElementSibling;
+    let titleText = '';
+    if (label && label.tagName === 'LABEL') {
+      titleText = label.textContent;
+    } else {
+      titleText = elem.getAttribute('aria-label') || '';
+    }
+    return titleText;
+  }
+  
+  const elems = document.querySelectorAll('.datepicker_input');
+  for (const elem of elems) {
+    const datepicker = new Datepicker(elem, {
+      'format': 'dd/mm/yyyy', // UK format
+      title: getDatePickerTitle(elem)
+    });
+  }
+
+// ---------------
+
+
 const deleteBtn = document.querySelectorAll('.del')
 const todoItem = document.querySelectorAll('span.not')
 const todoComplete = document.querySelectorAll('span.completed')
@@ -68,3 +94,13 @@ async function markIncomplete(){
     }
 }
 
+// date picker 
+$(function(){
+    $('#datepicker').datepicker();
+  });
+
+document.querySelector('#date').addEventListener('input',updateDate)
+
+function updateDate(){
+    console.log('boo')
+}
