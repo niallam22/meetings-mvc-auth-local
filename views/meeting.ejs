@@ -11,6 +11,7 @@
     <h1><%= meeting.meetingTitle %></h1>
     <section class="">
         <span>Meeting ID: <%= meeting._id %></span>
+        <span>Date: <%= meeting.finalMeetingTime%></span>
         <p>Notes: <%= meeting.notes %></p>
         <% let attendeeList = '' %>
         <% attendees.forEach(attendee => attendeeList += attendee.attendeeName + ', ') %>

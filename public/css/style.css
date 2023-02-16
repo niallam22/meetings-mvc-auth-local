@@ -8,3 +8,15 @@ h1{
 .not{
     text-decoration: underline;
 }
+/* create meeting */
+#schedule{
+  display: flex;
+}
+#schedule *{
+  text-decoration: none;
+  list-style: none;
+}
+  /* date picker */
+  .input-group-append {
+    cursor: pointer;
+  }
