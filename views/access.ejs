@@ -29,13 +29,8 @@
                     <% for(var i=0; i<meetings.userAvailability.length; i++) {%>
                     <ul>
                         <li class="attendeeAvailTimes">
-                            <% const meetingTimeUTC = moment.utc(meetings.userAvailability[i], "dddd, YYYY-MM-DDTHH:mm:ss.SSS[Z]"); %>
-                            <% const userTimezone = moment.tz.guess(); %>
-                            <% const meetingTimeLocal = meetingTimeUTC.clone().tz(userTimezone); %>
-                            <input type="checkbox" name="attendeeSelectedTime" class="timeSlot" value="<%= meetingTimeUTC.format() %>">
-                            <%= meetingTimeLocal.format('dddd, MMMM Do YYYY, h:mma z') %>
-                            </input>
-                          </li>
+                            <input type="checkbox" name="attendeeSelectedTime" class="timeSlot"><%=meetings.userAvailability[i]%></input>
+                        </li>
                     </ul>
                     <% } %>  
             <button class="sendAvail"type="submit">Submit to Facilitator</button>

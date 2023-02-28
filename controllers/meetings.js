@@ -1,9 +1,6 @@
 const Meeting = require('../models/Meeting') //CREATE MEETING MODEL AND MEETINGS.EJS edit controller once schema is created
 const Attendee = require('../models/Attendee') 
 const { deleteOne } = require('../models/Meeting')
-const moment = require('moment-timezone');
-moment.tz.setDefault('UTC')
-
 module.exports = {
     getMeetings: async (req,res)=>{
         console.log('this is req.user.id ',req.user.id)
@@ -34,7 +31,9 @@ module.exports = {
         try{
             const meetingItems = await Meeting.findById(req.body.access)
             console.log(meetingItems)
-            res.render('access.ejs', {meetings: meetingItems, user: req.user, moment : moment})
+            
+            res.render('access.ejs', {meetings: meetingItems, user: req.user})
+            
         }catch(err){
             console.log(err)
         }
