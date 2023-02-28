@@ -1,15 +1,26 @@
 // date picker 
 const datepicker = document.querySelector('#datepicker input');
 const timeSlots = document.querySelectorAll('.timeSlot');
+// $(function(){
+//   $('#datepicker');
+// });
 
-// Add an event listener to the datepicker
-datepicker.addEventListener('change', () => {
-// Get the selected date in UTC format
+// $('#datepicker').datepicker()
+//     .on(changeDate, function(e) {
+//         console.log(e)
+//     });
+
+// Date picker and event listener to the datepicker
+$(document).ready(function() {
+  $('#datepicker').datepicker()
+      .on('changeDate', function(e) {
+          // Get the selected date in UTC format
 const selectedDate = new Date(`${datepicker.value} UTC`);
 
 // Generate array of dates for the next 7 days (including the selected date)
 const days = [];
 const tzOffset = selectedDate.getTimezoneOffset() * 60 * 1000; 
+console.log('tzOffset', tzOffset)
 for (let i = 0; i < 7; i++) {
 const date = new Date(selectedDate.getTime() + i * 24 * 60 * 60 * 1000 + tzOffset);
 days.push(date);
@@ -73,8 +84,13 @@ const endHour = new Date(day.getFullYear(), day.getMonth(), day.getDate(), 23);
 
   dayOption.appendChild(hourOptions);
   schedule.appendChild(dayOption);
+})
+
+  });
 });
-});
+
+
+
 
 // const deleteBtn = document.querySelectorAll('.del')
 // const todoItem = document.querySelectorAll('span.not')
