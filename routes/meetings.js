@@ -15,4 +15,6 @@ router.post('/updateAvail/:id', meetingsController.updateAttendeeAvailability)
 
 router.post('/finaliseMeeting/:id', meetingsController.finaliseMeeting)
 
+router.delete('/deleteMeeting/:id', meetingsController.deleteMeeting)
+
 module.exports = router

@@ -1,14 +1,6 @@
 // date picker 
 const datepicker = document.querySelector('#datepicker input');
 const timeSlots = document.querySelectorAll('.timeSlot');
-// $(function(){
-//   $('#datepicker');
-// });
-
-// $('#datepicker').datepicker()
-//     .on(changeDate, function(e) {
-//         console.log(e)
-//     });
 
 // Date picker and event listener to the datepicker
 $(document).ready(function() {

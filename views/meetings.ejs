@@ -80,7 +80,10 @@
                     </a>
                     <span><%= el %></span>
                     
-                    <span class='del'> Delete </span>
+                    <form method="post" action="/meetings/deleteMeeting/<%= el._id %>?_method=DELETE"> <%# need way to delete attendees from the meeting %>
+                        <button type="submit">Delete</button>
+                    </form>
+                    
                 </li>
         <% }) %>    
         </ul>
