@@ -9,6 +9,7 @@ const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const meetingRoutes = require('./routes/meetings')
+const methodOverride = require('method-override')
 
 require('dotenv').config({path: './config/.env'})
 
@@ -22,6 +23,8 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json()) //parses req object as json object
 app.use(logger('dev'))
+app.use(methodOverride('_method'))
+
 // Sessions
 app.use(
     session({
@@ -35,7 +38,6 @@ app.use(
 // Passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
-
 app.use(flash())
 
 //once the server has heard a request it sends the request to the router

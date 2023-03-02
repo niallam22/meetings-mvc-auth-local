@@ -1,6 +1,6 @@
 const Meeting = require('../models/Meeting') //CREATE MEETING MODEL AND MEETINGS.EJS edit controller once schema is created
 const Attendee = require('../models/Attendee') 
-const { deleteOne } = require('../models/Meeting')
+const { deleteOne } = require('../models/Meeting') 
 const moment = require('moment-timezone');
 moment.tz.setDefault('UTC')
 
@@ -76,7 +76,17 @@ module.exports = {
         }catch(err){
             console.log(err)
         }
-    }      
+    },
+    deleteMeeting: async (req,res)=>{
+        console.log('this is req.params ',req.params)
+        try{
+            await Meeting.findByIdAndDelete(req.params.id)
+            await Attendee.deleteMany({meetingId:req.params.id})
+            res.redirect('/meetings')
+        }catch(err){
+            console.log(err)
+        }
+    }    
     //,
     // markComplete: async (req, res)=>{
     //     try{
