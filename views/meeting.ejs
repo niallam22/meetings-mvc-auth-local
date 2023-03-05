@@ -28,22 +28,18 @@
                             <th>Attendees</th>
                     </thead>
                     <tbody>
-                        <%# code itterates through the facilitators availbility and checks if there is corrosponding attendee responses and creates the table data%>
+                        <%# code itterates through the facilitators availbility and checks if there is corrosponding attendee responses and creates the table data EL AND ATTENDEEAVALIBILITY HAVE DIFF FORMATS FOR SOME REASON%>
 
                         <% meeting.userAvailability.forEach( el => { %>
                             <% const meetingTimeUTC = moment.utc(el, "YYYY-MM-DDTHH:mm:ss.SSS[Z]"); %>
                             <% const meetingTimeLocal = meetingTimeUTC.local().format("dddd, MMMM Do YYYY, h:mm a"); %>
                             <% console.log('el: ', el) %>
 
-                            <% let attendeesAvailable = 0%>
-                            <% let attendeeResponses = ''%>
+                            <% let attendeesAvailable = 0 %>
+                            <% let attendeeResponses = '' %>
                             <% attendees.forEach(attendee => { %>
-                                
-                                <% const attendeeMeetingTimeUTC = moment.utc(attendee.attendeeAvailability, "YYYY-MM-DDTHH:mm:ss.SSS[Z]"); %>
-                                <% const attendeeMeetingTimeLocal = attendeeMeetingTimeUTC.local().format("dddd, MMMM Do YYYY, h:mm a"); %>
 
                                 <% console.log('attendee.attendeeAvailability: ', attendee.attendeeAvailability, attendee.attendeeAvailability.includes(el)) %>
-
 
                                 <% if(attendee.attendeeAvailability.includes(el)){ %> 
                                     <% attendeesAvailable ++ %>

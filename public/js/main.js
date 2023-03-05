@@ -17,7 +17,7 @@ for (let i = 0; i < 7; i++) {
 const date = new Date(selectedDate.getTime() + i * 24 * 60 * 60 * 1000 + tzOffset);
 days.push(date);
 }
-console.log(tzOffset, 'tzoffset')
+
 // Generate array of time slots
 const hours = [];
 const now = new Date();
