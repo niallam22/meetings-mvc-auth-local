@@ -39,9 +39,9 @@
                             <% let attendeeResponses = '' %>
                             <% attendees.forEach(attendee => { %>
 
-                                <% console.log('attendee.attendeeAvailability: ', attendee.attendeeAvailability, attendee.attendeeAvailability.includes(el)) %>
+                                <% console.log('attendee.attendeeAvailability: ', attendee.attendeeAvailability, 'el', el.split(', ')[1]) %>
 
-                                <% if(attendee.attendeeAvailability.includes(el)){ %> 
+                                <% if(attendee.attendeeAvailability.includes(el.split(', ')[1])){ %> 
                                     <% attendeesAvailable ++ %>
                                     <% attendeeResponses += attendee.attendeeName %>
                                 <% } %>
