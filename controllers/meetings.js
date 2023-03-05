@@ -23,7 +23,7 @@ module.exports = {
             const meetingItem = await Meeting.findById(req.params.id)
             let attendeeInfo = await Attendee.find({meetingId:req.params.id})
             // console.log('this is attendeeInfo: ', attendeeInfo, `this is req.params.id ${req.params.id}`)
-            res.render('meeting.ejs', {meeting: meetingItem, attendees: attendeeInfo, user: req.user})
+            res.render('meeting.ejs', {meeting: meetingItem, attendees: attendeeInfo, user: req.user,moment : moment})
         }catch(err){
             console.log(err)
         }
