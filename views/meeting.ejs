@@ -28,20 +28,28 @@
                             <th>Attendees</th>
                     </thead>
                     <tbody>
-                        <%# code itterates through the facilitators availbility and checks if there is corrosponding attendee responses and creates the table data. could use OOP to do the checks%>
-                        <% meeting.userAvailability.forEach( el => { %> 
-                            <% let attendeesAvailable = 0%>
-                            <% let attendeeResponses = ''%>
+                        <%# code itterates through the facilitators availbility and checks if there is corrosponding attendee responses and creates the table data EL AND ATTENDEEAVALIBILITY HAVE DIFF FORMATS FOR SOME REASON%>
+
+                        <% meeting.userAvailability.forEach( el => { %>
+                            <% const meetingTimeUTC = moment.utc(el, "YYYY-MM-DDTHH:mm:ss.SSS[Z]"); %>
+                            <% const meetingTimeLocal = meetingTimeUTC.local().format("dddd, MMMM Do YYYY, h:mm a"); %>
+                            <% console.log('el: ', el) %>
+
+                            <% let attendeesAvailable = 0 %>
+                            <% let attendeeResponses = '' %>
                             <% attendees.forEach(attendee => { %>
-                                <% if(attendee.attendeeAvailability.includes(el)){ %> 
+
+                                <% console.log('attendee.attendeeAvailability: ', attendee.attendeeAvailability, 'el', el.split(', ')[1]) %>
+
+                                <% if(attendee.attendeeAvailability.includes(el.split(', ')[1])){ %> 
                                     <% attendeesAvailable ++ %>
                                     <% attendeeResponses += attendee.attendeeName %>
                                 <% } %>
                             <% }) %>
                             <tr>
                                 <td>
-                                    <input type="radio" name="finalisedAvailability" value="<%= el %>">
-                                        <%= el %>
+                                    <input type="radio" name="finalisedAvailability" value="<%= meetingTimeUTC.format() %>">
+                                        <%= meetingTimeLocal %>
                                     </input>
                                 </td>
                                 <td><%= attendeesAvailable %></td>
