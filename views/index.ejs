@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
-    <section class="bg-dark text-light p-5 text-center text-sm-start 100vh">
+    <section class="bg-dark text-light p-5 text-center text-sm-start vh-100">
         <div class="container">
             <div class="d-sm-flex justify-content-between align-items-center">
                 <div>
@@ -18,7 +18,8 @@
                     <span class="fw-bold text-warning d-block pb-2">Anytime, Anywhere</span>
                     <a class='btn btn-primary my-2' href="/login"> Login</a>
                     <a class='btn btn-primary my-2' href="/signup"> Signup</a>
-                    <form class="my-3" action="/meetings/accessMeeting" method="POST">
+
+                    <form class="my-3 input-group" action="/meetings/accessMeeting" method="POST">
                         <label for="meetingId" class="fs-6 text-muted">
                             Already have a meeting link?
                         </label>
