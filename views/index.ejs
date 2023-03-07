@@ -9,14 +9,32 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Create a meeting and seemlessly find a time that works for everyone!</h1>
-    <a href="/login"> Login</a>
-    <a href="/signup"> Signup</a>
-    <form action="/meetings/accessMeeting" method="POST">
-        <input type="hidden" name="objectId">
-        <input class="text" type="text" name="access" placeholder="Meeting ID">
-        <input type="submit">
-    </form>
+    <section class="bg-dark text-light p-5 text-center text-sm-start 100vh">
+        <div class="container">
+            <div class="d-sm-flex justify-content-between align-items-center">
+                <div>
+                    <h1>Booker</h1>
+                    <span class="fw-bold d-block">Create meetings</span>
+                    <span class="fw-bold text-warning d-block pb-2">Anytime, Anywhere</span>
+                    <a class='btn btn-primary my-2' href="/login"> Login</a>
+                    <a class='btn btn-primary my-2' href="/signup"> Signup</a>
+                    <form class="my-3" action="/meetings/accessMeeting" method="POST">
+                        <label for="meetingId" class="fs-6 text-muted">
+                            Already have a meeting link?
+                        </label>
+                        <input type="hidden" name="objectId">
+                        <input id="meetingId"class="text my-2" type="text" name="access" placeholder="Meeting ID">
+                        <input class='btn btn-primary my-2' type="submit">
+                    </form>
+                </div>
+                <img class="img-fluid w-50" src="/images/connectedWorld.svg" alt="connected world">
+            </div>
+
+
+        </div>
+    </section>
+
+
     
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>

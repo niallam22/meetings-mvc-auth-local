@@ -20,7 +20,7 @@ connectDB()
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
-app.use(express.static(__dirname + 'node_modules/bootstrap/dist'));
+app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json()) //parses req object as json object
 app.use(logger('dev'))
