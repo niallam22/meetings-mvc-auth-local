@@ -5,15 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Create a meeting and seemlessly find a time that works for everyone!</h1>
-    <a href="/login"> Login</a>
-    <a href="/signup"> Signup</a>
-    <form action="/meetings/accessMeeting" method="POST">
-        <input type="hidden" name="objectId">
-        <input class="text" type="text" name="access" placeholder="Meeting ID">
-        <input type="submit">
-    </form>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a href="" class="navbar-brand">Booker</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/login" class="nav-link">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/signup" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="bg-dark text-light p-5 text-center text-sm-start vh-100 d-flex">
+        <div class="container">
+            <div class="d-sm-flex justify-content-between align-items-center">
+                <div>
+                    <h1>Booker</h1>
+                    <span class="fw-bold d-block">Create meetings</span>
+                    <span class="fw-bold text-warning d-block pb-2">Anytime, Anywhere</span>
+                    <a class='btn btn-primary my-2' href="/login"> Login</a>
+                    <a class='btn btn-primary my-2' href="/signup"> Signup</a>
+
+                    <form class="my-3 input-group" action="/meetings/accessMeeting" method="POST">
+
+                        <label for="meetingId" class="fs-6 text-muted">
+                            Already have a meeting link?
+                        </label>
+                        <input id="meetingId" class="text my-2" type="text" name="access" placeholder="Meeting ID">
+                        <input class='btn btn-primary my-2' type="submit">
+                    </form>
+                </div>
+                <img class="img-fluid w-50 d-none d-sm-block" src="/images/connectedWorld.svg" alt="connected world">
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="p-5 bg-dark text-white text-center position-relative">
+        <div class="container">
+            <p class="lead">Copyright &copy; 2023 Booker</p>
+
+            <a href="#" class="postion-absolute bottom-0 end-0 p-5">
+                <i class="bi bi-arrow-up-circle h1"></i>
+            </a>
+        </div>
+    </footer>
+    
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+
+        <!-- Bootstrap JavaScript -->
+        <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
