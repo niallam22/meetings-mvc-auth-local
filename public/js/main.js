@@ -2,6 +2,27 @@
 const datepicker = document.querySelector('#datepicker input');
 const timeSlots = document.querySelectorAll('.timeSlot');
 
+// set meeting bounds
+// const earliestTime = () => console.log(document.getElementById('earliestTime').value)
+// const latestTime = () => document.getElementById('latestTime').value
+// const dayRange = () => document.getElementById('dayRange').value
+
+
+// document.getElementById('earliestTime').addEventListener('change', earliestTime)
+// document.getElementById('latestTime').addEventListener('change', latestTime)
+// document.getElementById('dayRange').addEventListener('change', dayRange)
+
+const earliestTime = () => {
+  const output = document.querySelector('output');
+  const earliestTimeInput = document.getElementById('earliestTime');
+  output.value = earliestTimeInput.value;
+  console.log(`Earliest meeting start time: ${earliestTimeInput.value}`);
+};
+
+document.getElementById('earliestTime').addEventListener('change', earliestTime);
+
+
+
 // Date picker and event listener to the datepicker
 $(document).ready(function() {
   $('#datepicker').datepicker()

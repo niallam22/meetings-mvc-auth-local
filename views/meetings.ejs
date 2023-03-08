@@ -11,59 +11,98 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
-<body>
-    <h1>Meetings</h1>
-    <section class="create new meeting">
+<body class="">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a href="" class="navbar-brand">Booker</a>
+
+            <div>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+ 
+    <!-- create meetings -->
+    <section class="bg-dark text-light p-5">
+        <div class="container">
+            <h1>Meetings</h1>
+            <div class="card bg-secondary col-lg-6">
+                <h5 class="card-header">Create meeting</h5>
+                <div class="card-body">
+                    <form action="meetings/createMeeting" method="POST">   
+                        <div class="mb-3">
+                          <label for="title" class="form-label">Title</label>
+                          <input type="text" class="form-control" id="title" placeholder="Meeting title">
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="subject" class="form-label">Subject</label>
+                          <textarea type="text" class="form-control" id="subject" placeholder="This meeting will be about..."></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="#" class="form-label">Earliest meeting start time</label>
+                            <input type="range" value="0" id="earliestTime" name="earliestTime" min="0" max="24" oninput="this.nextElementSibling.value = this.value">
+                            <output>0</output>
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="#" class="form-label">Latest meeting start time</label>
+                            <input type="range" value="24" id="latestTime" name="latestTime" min="0" max="24" oninput="this.nextElementSibling.value = this.value">
+                            <output>24</output>
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="#" class="form-label">Number of possible days</label>
+                            <input type="range" value="1" id="dayRange" name="dayRange" min="1" max="7" oninput="this.nextElementSibling.value = this.value">
+                            <output>1</output>
+                          </div>
+
+                        <div class="mb-3">
+                              <label for="date" class="col-1 col-form-label">Date</label>
+
+                                <div class="input-group date" id="datepicker">
+                                  <input type="text" class="form-control" id="date" placeholder="Select a date"/>
+                                  <span class="input-group-append">
+                                    <span class="input-group-text bg-light d-block">
+                                      <i class="fa fa-calendar"></i>
+                                    </span>
+                                  </span>
+                                </div>
+
+                                         
+                      
+                          <% const days= [] %>
+                          <% const hours= [] %>
+                      
+                          <ol id="schedule">
+                              <% days.forEach(dayOfWeek=>{ %>
+                                  <li class="day" id="<%=dayOfWeek.toLowerCase()%>">
+                                      <%=dayOfWeek%>
+                                      <ol>
+                                          <% hours.forEach(hour =>{ %>
+                                              <li class="hour">
+                                                  <input type="checkbox" name="facilitatorTime" class="timeSlot" value="<%=dayOfWeek%>, <%=hour %>">
+                                                  <%= hour %>
+                                                  </input>
+                                              </li> 
+                                          <% }) %>
+                                      </ol>
+                                  </li>
+                              <% } ) %>
+                          </ol>
+                        </div>
+                </form>
+                  <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+              </div>
+        </div>
         
-        <form action="meetings/createMeeting" method="POST">
-            <fieldset>
-                <legend><h3>Create new meeting</h3></legend>
-                <label>
-                    Title:
-                    <input type="text" name="title">
-                </label>
-                    Meeting notes
-                    <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
-                </label>
 
-                <div class="row">
-                    <label for="date" class="col-1 col-form-label">Date</label>
-                    <div class="col-5">
-                      <div class="input-group date" id="datepicker">
-                        <input type="text" class="form-control" id="date"/>
-                        <span class="input-group-append">
-                          <span class="input-group-text bg-light d-block">
-                            <i class="fa fa-calendar"></i>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                </div>               
-
-                <% const days= [] %>
-                <% const hours= [] %>
-
-                <ol id="schedule">
-                    <% days.forEach(dayOfWeek=>{ %>
-                        <li class="day" id="<%=dayOfWeek.toLowerCase()%>">
-                            <%=dayOfWeek%>
-                            <ol>
-                                <% hours.forEach(hour =>{ %>
-                                    <li class="hour">
-                                        <input type="checkbox" name="facilitatorTime" class="timeSlot" value="<%=dayOfWeek%>, <%=hour %>">
-                                        <%= hour %>
-                                        </input>
-                                    </li> 
-                                <% }) %>
-                            </ol>
-                        </li>
-                    <% } ) %>
-                </ol>
-
-                <button type="submit">create meeting</button>
-
-            </fieldset>
-        </form>
     </section>
     
 
@@ -88,12 +127,7 @@
         <% }) %>    
         </ul>
 
-    <form action="/todos/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
-    </form>
-
-    <a href="/logout">Logout</a>
+    
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
