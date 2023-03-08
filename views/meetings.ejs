@@ -30,7 +30,7 @@
     <section class="bg-dark text-light p-5">
         <div class="container">
             <h1>Meetings</h1>
-            <div class="card bg-secondary col-lg-6">
+            <div class="card bg-secondary col-lg-8">
                 <h5 class="card-header">Create meeting</h5>
                 <div class="card-body">
                     <form action="meetings/createMeeting" method="POST">   
@@ -52,8 +52,8 @@
 
                           <div class="mb-3">
                             <label for="#" class="form-label">Latest meeting start time</label>
-                            <input type="range" value="24" id="latestTime" name="latestTime" min="0" max="24" oninput="this.nextElementSibling.value = this.value">
-                            <output>24</output>
+                            <input type="range" value="24" id="latestTime" name="latestTime" min="0" max="23" oninput="this.nextElementSibling.value = this.value">
+                            <output>23</output>
                           </div>
 
                           <div class="mb-3">

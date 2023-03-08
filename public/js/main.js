@@ -3,23 +3,34 @@ const datepicker = document.querySelector('#datepicker input');
 const timeSlots = document.querySelectorAll('.timeSlot');
 
 // set meeting bounds
-// const earliestTime = () => console.log(document.getElementById('earliestTime').value)
-// const latestTime = () => document.getElementById('latestTime').value
-// const dayRange = () => document.getElementById('dayRange').value
+let earliestTime;
+let latestTime;
+let dayRange;
 
+// Create an AudioContext to handle browser gesture errors
+let context;
+window.onload = function(){
+  context = new AudioContext();
+}
 
-// document.getElementById('earliestTime').addEventListener('change', earliestTime)
-// document.getElementById('latestTime').addEventListener('change', latestTime)
-// document.getElementById('dayRange').addEventListener('change', dayRange)
-
-const earliestTime = () => {
-  const output = document.querySelector('output');
-  const earliestTimeInput = document.getElementById('earliestTime');
-  output.value = earliestTimeInput.value;
-  console.log(`Earliest meeting start time: ${earliestTimeInput.value}`);
+const getEarliestTime = async () => {
+  await context.resume();
+  earliestTime = document.getElementById('earliestTime').value;
 };
 
-document.getElementById('earliestTime').addEventListener('change', earliestTime);
+const getLatestTime = async () => {
+  await context.resume();
+  latestTime = document.getElementById('latestTime').value;
+};
+
+const getDayRange = async () => {
+  await context.resume();
+  dayRange = document.getElementById('dayRange').value;
+};
+
+document.getElementById('earliestTime').addEventListener('change', getEarliestTime);
+document.getElementById('latestTime').addEventListener('change', getLatestTime);
+document.getElementById('dayRange').addEventListener('change', getDayRange);
 
 
 
@@ -101,77 +112,3 @@ const endHour = new Date(day.getFullYear(), day.getMonth(), day.getDate(), 23);
 
   });
 });
-
-
-
-
-// const deleteBtn = document.querySelectorAll('.del')
-// const todoItem = document.querySelectorAll('span.not')
-// const todoComplete = document.querySelectorAll('span.completed')
-
-// Array.from(deleteBtn).forEach((el)=>{
-//     el.addEventListener('click', deleteTodo)
-// })
-
-// Array.from(todoItem).forEach((el)=>{
-//     el.addEventListener('click', markComplete)
-// })
-
-// Array.from(todoComplete).forEach((el)=>{
-//     el.addEventListener('click', markIncomplete)
-// })
-
-// async function deleteTodo(){
-//     const todoId = this.parentNode.dataset.id
-//     try{
-//         const response = await fetch('todos/deleteTodo', {
-//             method: 'delete',
-//             headers: {'Content-type': 'application/json'},
-//             body: JSON.stringify({
-//                 'todoIdFromJSFile': todoId
-//             })
-//         })
-//         const data = await response.json()
-//         console.log(data)
-//         location.reload()
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
-
-// async function markComplete(){
-//     const todoId = this.parentNode.dataset.id
-//     try{
-//         const response = await fetch('todos/markComplete', {
-//             method: 'put',
-//             headers: {'Content-type': 'application/json'},
-//             body: JSON.stringify({
-//                 'todoIdFromJSFile': todoId
-//             })
-//         })
-//         const data = await response.json()
-//         console.log(data)
-//         location.reload()
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
-
-// async function markIncomplete(){
-//     const todoId = this.parentNode.dataset.id
-//     try{
-//         const response = await fetch('todos/markIncomplete', {
-//             method: 'put',
-//             headers: {'Content-type': 'application/json'},
-//             body: JSON.stringify({
-//                 'todoIdFromJSFile': todoId
-//             })
-//         })
-//         const data = await response.json()
-//         console.log(data)
-//         location.reload()
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
-
