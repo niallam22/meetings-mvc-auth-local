@@ -11,7 +11,7 @@ module.exports = {
             const meetingItems = await Meeting.find({userId:req.user.id})
             // console.log('this is meeting items: ', meetingItems)
             const itemsLeft = await Meeting.countDocuments({userId:req.user.id})//need to add a meeting date to userSchema and compare that to the current date
-            res.render('meetings.ejs', {meetings: meetingItems, left: itemsLeft, user: req.user})
+            res.render('meetings.ejs', {meetings: meetingItems, left: itemsLeft, user: req.user, moment : moment})
         }catch(err){
             console.log(err)
         }
