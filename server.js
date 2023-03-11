@@ -18,6 +18,7 @@ require('./config/passport')(passport)
 
 connectDB()
 
+//middleware
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
@@ -41,11 +42,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 
-//once the server has heard a request it sends the request to the router
-//for a login, a get request is sent to main routes
+//pass request to router
 app.use('/', mainRoutes)
 app.use('/meetings', meetingRoutes)
- 
+
+//listen for requests
 app.listen(process.env.PORT, ()=>{
     console.log('Server is running, you better catch it!')
 })    
